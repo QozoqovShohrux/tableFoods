@@ -1,0 +1,28 @@
+.table {
+    cursor: pointer !important;
+}
+
+* {
+    user-select: none !important;
+}
+
+.liked-icon {
+    cursor: pointer;
+    transition: 0.5s all linear;
+}
+
+.liked-icon:active {
+    transform: scale(0.8);
+}
+
+.badge-success {
+    font-size: 20px !important;
+}
+
+.list-group-item:active {
+    color: white i !important;
+}
+
+.list-group-item {
+    cursor: pointer !important;
+}
