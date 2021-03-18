@@ -1,0 +1,59 @@
+.table {
+    cursor: pointer !important;
+}
+
+* {
+    user-select: none !important;
+}
+
+.liked-icon {
+    cursor: pointer;
+    transition: 0.5s all linear;
+}
+
+.list-group-item {
+    cursor: pointer !important;
+}
+
+.liked-icon:active {
+    transform: scale(0.8);
+}
+
+.badge-success {
+    font-size: 20px !important;
+}
+
+.list-group-item:active {
+    color: white i !important;
+}
+
+.list-group-item {
+    cursor: pointer !important;
+}
+
+.lg-badge {
+    font-size: 20px !important;
+}
+
+table>thead>tr>th {
+    cursor: pointer;
+}
+
+table>thead>tr th:last-child {
+    cursor: auto;
+}
+
+.alertmisan {
+    background: none !important;
+    outline: none !important;
+    border: none !important;
+    color: #ff5252 !important;
+    font-weight: 500 !important;
+    margin-left: -20px !important;
+}
+
+@media screen and (max-width: 960px) {
+    .alertmisan {
+        font-size: 9px !important;
+    }
+}
