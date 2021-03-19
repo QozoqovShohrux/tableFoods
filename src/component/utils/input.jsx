@@ -1,6 +1,6 @@
 const Input = ({ name, label,errors, ...args}) => {
   return (
-    <div className="form-group mt-4">
+    <div className="form-group ">
       <label htmlFor={name}>{label} :</label>
       <input
         id={name}

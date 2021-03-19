@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Joi from 'joi-browser'
 import Input from '../utils/input'
+import Select from '../pages/select'
 export default class Form extends Component {
   state = {
     data: {},
@@ -16,14 +17,7 @@ export default class Form extends Component {
         .forEach(({ path, message }) => (errors[path[0]] = message));
     return Object.keys(errors).length > 0 ? errors : null;
 
-    // const errors = {};
-    // const {username, password } = this.state.data;
-    // if (username.trim() === "") errors.username = "Username kiritilmagan!";
-    // if (password.length < 6)
-    //   errors.password =
-    //     "Uzur oka siz hozir kamida 6 ta belgi kiritishingiz kerak";
-    // if (password === "") errors.password = "Password kiritilmagan!";
-    // return Object.keys(errors).length > 0 ? errors : null;
+
   }
   handleSubmit = (e) => {
    e.preventDefault();
@@ -38,11 +32,7 @@ export default class Form extends Component {
     const { error } = Joi.validate(object, { [name]: this.schema[name] });
     if (error?.details) message = error.details[0].message;
     return message ?? null;
-    // let message;
-    // if (value.trim() === "" && name === "username") message = name  + " kiritilmagan";
-    // if(value.length < 6 && name === "password") message = name + "ning qiymati kamida 6 ta belgidan iborat bo'lishi kerak";
-    // if (value === "" && name === "password") message = name  + " kiritilmagan";
-    // return message ? message : null;
+
   }
 
   handleChange = ({ currentTarget: { name, value } }) => {
@@ -69,11 +59,24 @@ export default class Form extends Component {
       />
     )
   }
+  renderSelect = ({ name, label, options, ...args }) => {
+    const { data, errors } = this.state;
+    return (
+      <Select
+        name={name}
+        label={label}
+        value={data[name]}
+        onChange={this.handleChange}
+        errors={errors[name]}
+        options={options}
+        {...args}
+      />
+    )
+  }
   renderSubmit = ({ label }) => {
     return (
       <button
         className="btn btn-primary float-right"
-        onClick={this.handleSubmit}
       >
         {label}
       </button>
@@ -81,6 +84,6 @@ export default class Form extends Component {
   }
   renderTitle = () => {
     const { title } = this.state
-    return <h1 className="mt-3">{title}</h1>
+    return <h4 className="mt-3">{title}</h4>
   }
  }

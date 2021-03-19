@@ -22,7 +22,7 @@ export default class Login extends Form {
     return (
       <div className="container">
         <this.renderTitle />
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <this.renderInput name="username" label="Username" />
           <this.renderInput name="password" label="Password" type="password" />
           <this.renderSubmit label = "Submit" />  

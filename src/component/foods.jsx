@@ -6,13 +6,16 @@ import ListGroup from "./list-group";
 import { paginate } from "./paginate";
 import Paginate from "./pagination";
 import _ from "lodash";
+import { Link } from "react-router-dom";
+import SearchBox from "./common/search";
 class Foods extends Component {
   state = {
     foods: getFoods(),
     currentPage: 1,
     pageSize: 4,
     categories: getCategories(),
-    selectCategory: {},
+    selectCategory: null,
+    searchQuery : "",
     sortColumn : {columnName : "title", orderBy : "asc"}
   };
 
@@ -33,8 +36,11 @@ class Foods extends Component {
     });
   };
   handleSelectCategory = (selectCategory) => {
-    this.setState({ selectCategory, currentPage: 1 });
+    this.setState({ selectCategory,searchQuery : "", currentPage: 1 });
   };
+  handleSearch =(query) => {
+    this.setState({selectCategory : null, searchQuery : query, currentPage : 1});
+  }
   handleSelectSort=(sortColumn)=>{
     
     this.setState({sortColumn})
@@ -53,12 +59,16 @@ class Foods extends Component {
       currentPage,
       pageSize,
       selectCategory,
+      searchQuery,
       sortColumn 
     } = this.state;
     let {length : count} = foods; 
-    const filtered = selectCategory?._id
-      ? foods.filter((food) => food.category?._id === selectCategory._id)
-      : foods;
+    let filtered = foods;
+    if(searchQuery) filtered = foods.filter((food) => food.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    else if(selectCategory && selectCategory._id) filtered = foods.filter((food) => food.category._id === selectCategory._id);
+    // const filtered = selectCate  gory?._id
+    //   ? foods.filter((food) => food.category?._id === selectCategory._id)
+    //   : foods; 
     const sorted = _.orderBy(filtered,sortColumn.path,sortColumn.orderBy);
     const paginated = paginate(sorted, currentPage, pageSize);
     count = filtered.length;
@@ -70,7 +80,8 @@ class Foods extends Component {
       pageSize,
       selectCategory,
       categories,
-      sortColumn 
+      sortColumn ,
+      searchQuery
     } = this.state;
     const {data,count} = this.getPageData();
     return (
@@ -87,6 +98,10 @@ class Foods extends Component {
             />
           </div>
           <div className="col">
+          <Link to="/foods/new" className="btn btn-primary my-3">Add Food</Link>
+          <SearchBox onChange={this.handleSearch} value={searchQuery} />
+          <div className="input-group-append">
+          </div>
             {count === 0 ? (
               <h5>Bizda buyurtma qolmagan</h5>
             ) : (

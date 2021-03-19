@@ -1,5 +1,5 @@
 import Foods from "../foods.jsx";
-import FoodDetails from "../pages/foodDetails.jsx";
+import FormFood from "../pages/form-food.jsx";
 import Home from "../pages/home.jsx";
 import Login from "../pages/login.jsx";
 import NotFound from "../pages/not-found.jsx";
@@ -7,7 +7,7 @@ import Register from "../pages/register.jsx";
 
 export const routes = [
     { path: "/foods", component: Foods, exact: true },
-    { path: "/foods/:foodsId", component: FoodDetails, exact: false },
+    { path: "/foods/:foodsId", component: FormFood, exact: false },
     { path: "/home", component: Home, exact: false },
     { path: "/login", component: Login, exact: false },
     { path: "/register", component: Register, exact: false },
