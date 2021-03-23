@@ -14,7 +14,7 @@ class Foods extends Component {
     currentPage: 1,
     pageSize: 4,
     categories: getCategories(),
-    selectCategory: null,
+    selectCategory: {},
     searchQuery : "",
     sortColumn : {columnName : "title", orderBy : "asc"}
   };

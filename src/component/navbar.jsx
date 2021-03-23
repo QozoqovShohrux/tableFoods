@@ -3,7 +3,8 @@ import "jquery/dist/jquery.js";
 import "popper.js/dist/popper.js";
 import { Link } from "react-router-dom";
 const menu = [
-  {path: "/home", title : "Home", exact : true},
+  {path: "/home", title : "ResetApi", exact : true},
+  {path: "/about", title : "ResetTodo", exact : true},
   {path: "/login", title : "Login", exact : true},
   {path: "/register", title : "Register", exact : true},
 ]
